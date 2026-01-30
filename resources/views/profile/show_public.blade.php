@@ -10,7 +10,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-8">
                 <div class="text-center">
                     <img src="{{ $user->photo ? asset('storage/' . $user->photo) : 'https://ui-avatars.com/api/?name='.urlencode($user->name) }}" 
-     class="h-24 w-24 rounded-full mx-auto border-2 border-indigo-50 shadow-md object-cover">
+     style="width: 60px !important; height: 60px !important;"
+     class="rounded-full mx-auto border-2 border-indigo-50 shadow-md object-cover">
                     
                     <h1 class="mt-4 text-3xl font-bold text-gray-900">{{ $user->name }}</h1>
                     <p class="text-indigo-600 font-semibold text-lg">{{ $user->speciality ?? 'Chercheur' }}</p>
