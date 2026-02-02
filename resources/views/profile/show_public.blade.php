@@ -24,6 +24,7 @@
                     </p>
                 </div>
 
+                
                 <div class="mt-6 border-t pt-6">
                     <h3 class="text-lg font-bold text-gray-800 mb-2">Contact</h3>
                     <div class="flex items-center text-gray-600">
@@ -31,6 +32,50 @@
                         <span>{{ $user->email }}</span>
                     </div>
                 </div>
+
+
+                @if(isset($user->profile->titre))
+                <div class="mt-6 border-t pt-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">Titre</h3>
+                    <div class="flex items-center text-gray-600">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                      <span>{{ $user->profile->titre ?? "titre" }}</span>
+                    </div>
+                </div>
+                @endif
+
+
+                @if(isset($user->profile->formation))
+                <div class="mt-6 border-t pt-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">Formation</h3>
+                    <div class="flex items-center text-gray-600">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <span>{{ $user->profile->formation  }}</span>
+                    </div>
+                </div>
+                @endif
+
+
+
+                @if(isset($user->profile->experiences))
+                <div class="mt-6 border-t pt-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">Experience</h3>
+                    <div class="flex items-center text-gray-600">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <span>{{ $user->profile->experiences }}</span>
+                    </div>
+                </div>
+                @endif
+
+                @if(isset($user->profile->competences))
+                <div class="mt-6 border-t pt-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">Competence</h3>
+                    <div class="flex items-center text-gray-600">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <span>{{ $user->profile->competences }}</span>
+                    </div>
+                </div>
+                @endif
 
                 <div class="mt-10 text-center">
                     <a href="{{ route('search_page') }}" class="text-sm text-gray-500 hover:text-indigo-600">

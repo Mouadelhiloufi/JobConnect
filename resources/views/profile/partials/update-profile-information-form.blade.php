@@ -49,6 +49,38 @@
     <x-input-error class="mt-2" :messages="$errors->get('photo')" />
 </div>
 
+
+    <hr class="my-6 border-t border-gray-200">
+        <h3 class="text-md font-bold text-gray-700 uppercase">{{ __('Informations Professionnelles (CV)') }}</h3>
+
+        <div class="mt-4">
+            <x-input-label for="titre" :value="__('Titre Professionnel')" />
+            <x-text-input id="titre" name="titre" type="text" class="mt-1 block w-full" :value="old('titre', $user->profile->titre ?? '')" placeholder="ex: Ingénieur État en Informatique" />
+            <x-input-error class="mt-2" :messages="$errors->get('titre')" />
+        </div>
+
+        <div class="mt-4">
+            <x-input-label for="formation" :value="__('Formation')" />
+            <textarea id="formation" name="formation" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" rows="3">{{ old('formation', $user->profile->formation ?? '') }}</textarea>
+            <x-input-error class="mt-2" :messages="$errors->get('formation')" />
+        </div>
+
+        <div class="mt-4">
+            <x-input-label for="experiences" :value="__('Expériences')" />
+            <textarea id="experiences" name="experiences" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" rows="4">{{ old('experiences', $user->profile->experiences ?? '') }}</textarea>
+            <x-input-error class="mt-2" :messages="$errors->get('experiences')" />
+        </div>
+
+        <div class="mt-4">
+            <x-input-label for="competences" :value="__('Compétences')" />
+            <x-text-input id="competences" name="competences" type="text" class="mt-1 block w-full" :value="old('competences', $user->profile->competences ?? '')" placeholder="PHP, Laravel, Git, Docker..." />
+            <x-input-error class="mt-2" :messages="$errors->get('competences')" />
+        </div>
+
+
+
+
+
         <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
