@@ -28,6 +28,10 @@ class ProfileUpdateRequest extends FormRequest
             'bio' => ['nullable', 'string', 'max:500'],
             'speciality' => ['nullable', 'string', 'max:500'],
             'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+            'titre' => ['nullable', 'string', 'max:255'],
+            'formation' => ['nullable', 'string'],
+            'experiences' => ['nullable', 'string'],
+            'competences' => ['nullable', 'string'],
         ];
     }
 }

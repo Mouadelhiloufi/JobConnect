@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
-
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -45,9 +44,15 @@ class ProfileController extends Controller
             $request->user()->email_verified_at = null;
         }
 
-        
-
         $request->user()->save();
+
+        $profileData = $request->only(['titre', 'formation', 'experiences', 'competences']);
+
+    
+        $user->profile()->updateOrCreate(
+        ['user_id' => $user->id],
+        $profileData
+    );
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
@@ -62,7 +67,7 @@ class ProfileController extends Controller
     $searchType = $request->input('search_type');
     $searchQuery = $request->input('query');   
 
-    $query = User::query()->where('role', 'chercheur'); 
+    $query = User::query();
 
     if ($searchQuery) {
         if ($searchType === 'name') {
