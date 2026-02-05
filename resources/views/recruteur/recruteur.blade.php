@@ -18,9 +18,9 @@
                     <p class="text-3xl font-bold text-gray-800">124</p>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow border-b-4 border-orange-500 text-center flex items-center justify-center">
-                    <button class="bg-blue-800 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-900 transition">
-                        + Publier une offre
-                    </button>
+                    <a href="{{ route('job_offers.create') }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow">
+                    Ajouter une offre
+                    </a>
                 </div>
             </div>
 
