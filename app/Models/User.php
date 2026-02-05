@@ -43,6 +43,20 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
+    public function Job_offers(){
+        return $this->hasMany(Job_offer::class,'user_id');
+    }
+
+    public function applications(){
+        return $this->hasMany(Application::class);
+    }
+
+    public function appliedJobs(){
+        return $this->belongsToMany(Job_offer::class, 'applications','user_id','job_offer_id')
+        ->withPivot('statut')
+        ->withTimestamps();
+    }
+
     /**
      * Get the attributes that should be cast.
      *
