@@ -17,8 +17,15 @@
                 </div>
                 @elseif(Auth::user()->role==='chercheur')
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('chercheur')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('chercheur.index')" :active="request()->routeIs('dashboard')">
                         {{ __('chercheur') }}
+                    </x-nav-link>
+                </div>
+                @endif
+                @if(Auth::user()->role==='recruteur')
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('job_offers.my_offers')" :active="request()->routeIs('dashboard')">
+                        {{ __('Mes offres') }}
                     </x-nav-link>
                 </div>
                 @endif
