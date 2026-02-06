@@ -4,6 +4,7 @@ use App\Http\Controllers\CandidateProfileController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Job_offerController;
+use App\Http\Controllers\ApplicationController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -49,6 +50,8 @@ Route::get('/search', [ProfileController::class, 'index'])->name('search_page');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/myOffers',[Job_offerController::class,'myOffers'])->name('job_offers.my_offers');
     Route::get('/chercheur', [Job_offerController::class, 'show_offers'])->name('chercheur.index');
+    Route::post('/offres/{job_offer}/postuler', [ApplicationController::class, 'store'])->name('applications.store');
+    Route::get('/recruteur', [Job_offerController::class, 'page_postulation'])->name('recruteur.dashboard');
 });
 
 require __DIR__.'/auth.php';

@@ -11,7 +11,7 @@ class Job_offer extends Model
     }
 
     public function applicants(){
-        return $this->belongsToMany(User::class,'application','user_id','job_offer_id')
+        return $this->belongsToMany(User::class,'application','job_offer_id','user_id')
         ->withPivot('statut')
         ->withTimestamps();
     }

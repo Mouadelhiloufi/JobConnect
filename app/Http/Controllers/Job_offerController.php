@@ -32,7 +32,7 @@ public function store(Request $request){
         'entreprise' => $validatedData['entreprise'],
         'image' => $path,
     ]);
-    return redirect()->route('recruteur');
+    return redirect()->route('recruteur.dashboard');
 
 
 }
@@ -62,6 +62,11 @@ public function show_offers(){
 
 public function show_detail(Job_offer $job_offer){
     return view('job_offers.show', compact('job_offer'));
+}
+
+public function page_postulation(){
+    $offres=Job_offer::where('user_id',auth()->id())->with('applicants')->get();
+    return view('recruteur.recruteur',compact('offres'));
 }
 
 

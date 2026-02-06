@@ -24,6 +24,33 @@
                 </div>
             </div>
 
+            
+            @foreach($offres as $offre)
+    <div class="mb-8 p-6 bg-white shadow-md rounded-lg">
+        <h2 class="text-xl font-bold border-b pb-2">{{ $offre->titre }}</h2>
+        
+        <h3 class="mt-4 font-semibold text-gray-700">Candidats :</h3>
+        
+        @if($offre->applicants->isEmpty())
+            <p class="text-gray-500 italic">Aucun candidat pour le moment.</p>
+        @else
+            <ul class="mt-2 divide-y">
+                @foreach($offre->applicants as $candidat)
+                    <li class="py-3 d-flex justify-between items-center">
+                        <div>
+                            <span class="font-medium">{{ $candidat->name }}</span> 
+                            <span class="text-sm text-gray-500">({{ $candidat->email }})</span>
+                        </div>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">
+                            {{ $candidat->pivot->statut }}
+                        </span>
+                    </li>
+                @endforeach
+            </ul>
+        @endif
+    </div>
+@endforeach
+
             <div class="bg-white rounded-lg shadow overflow-hidden">
                 <div class="p-6 border-b border-gray-200">
                     <h4 class="font-bold text-gray-800 italic uppercase">Dernières candidatures reçues</h4>

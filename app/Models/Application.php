@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Application extends Model
 {
+    protected $table = 'application';
+    
     protected $fillable = ['user_id','job_offer_id','statut'];
 
     public function user(){
@@ -13,6 +15,6 @@ class Application extends Model
     }
 
     public function job_offer(){
-        return $this->belongsTo(job_offer::class);
+        return $this->belongsTo(job_offer::class,'job_offer');
     }
 }
