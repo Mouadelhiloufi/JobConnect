@@ -77,7 +77,57 @@
                             <p class="text-slate-500">Aucune offre disponible pour le moment.</p>
                         </div>
                     @endforelse
-                    {{-- --- FIN DE LA BOUCLE --- --}}
+
+                    {{-- Section des Invitations --}}
+@if(auth()->user()->friendOf()->wherePivot('status', 'en attente')->count() > 0)
+    <div class="mb-8">
+        <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center">
+            <span class="flex h-3 w-3 mr-2">
+                <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-blue-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
+            </span>
+            Invitations en attente
+        </h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            @foreach(auth()->user()->friendOf()->wherePivot('status', 'en attente')->get() as $request)
+                <div class="bg-white p-4 rounded-2xl border border-blue-100 shadow-sm flex items-center justify-between group hover:shadow-md transition">
+                    <div class="flex items-center gap-3">
+                        <img class="h-10 w-10 rounded-xl object-cover" 
+                             src="https://ui-avatars.com/api/?name={{ $request->name }}&background=DBEAFE&color=2563EB" alt="">
+                        <div>
+                            <p class="text-sm font-bold text-slate-800">{{ $request->name }}</p>
+                            <p class="text-xs text-slate-500">Souhaite se connecter</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-2">
+                        {{-- Bouton Accepter --}}
+                        <form action="{{ route('friends.accept', $request->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition shadow-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </button>
+                        </form>
+                        
+                        {{-- Bouton Refuser --}}
+                        <form action="{{ route('friends.reject', $request->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="p-2 bg-slate-100 text-slate-400 rounded-lg hover:bg-red-50 hover:text-red-500 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+    <hr class="border-slate-200 mb-8">
+@endif
                     
                 </div>
             </div>

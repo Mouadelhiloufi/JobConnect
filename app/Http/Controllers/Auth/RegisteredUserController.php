@@ -53,7 +53,9 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         $role=Auth::user()->role;
+        $user->assignRole($role);
 
+        
         if($role==='recruteur'){
             return redirect('/recruteur');
         }else{

@@ -51,6 +51,15 @@
     </div>
 @endforeach
 
+
+@foreach(auth()->user()->friendOf()->wherePivot('status', 'en attente')->get() as $request)
+    <p>{{ $request->name }} veut être votre ami</p>
+    <form action="{{ route('friends.accept', $request->id) }}" method="POST">
+        @csrf
+        <button type="submit">Accepter</button>
+    </form>
+@endforeach
+
             <div class="bg-white rounded-lg shadow overflow-hidden">
                 <div class="p-6 border-b border-gray-200">
                     <h4 class="font-bold text-gray-800 italic uppercase">Dernières candidatures reçues</h4>
